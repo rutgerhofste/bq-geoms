@@ -7,7 +7,7 @@ Bigquery has the capability to handle geospatial data (currently in public Alpha
 1. Global Raster at different resolutions.
 1. Countries, Provinces and localities (GADM).
 
-`jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --certfile=/.keys/mycert.pem --keyfile=/.keys/mykey.key --notebook-dir= /volumes/repos/flood_risk_analyzer_ingest/ --config=/volumes/flood_risk_analyzer_ingest/jupyter_notebook_config.py`
+`jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --certfile=/.keys/mycert.pem --keyfile=/.keys/mykey.key --notebook-dir= /volumes/repos/bq-geoms/ --config=/volumes/repos/bq-geoms/jupyter_notebook_config.py`
 
 
 
