@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 """ Convert GeoPackage to Bigquery Compatible Format
 
@@ -28,7 +28,7 @@ ec2_input_path = "/volumes/data/%s/input_V%0.2d" %(SCRIPT_NAME,OUTPUT_VERSION)
 ec2_output_path = "/volumes/data/%s/output_V%0.2d" %(SCRIPT_NAME,OUTPUT_VERSION)
 
 
-# In[3]:
+# In[2]:
 
 get_ipython().system('rm -r {ec2_input_path}')
 get_ipython().system('mkdir -p {ec2_input_path}')
@@ -36,7 +36,7 @@ get_ipython().system('rm -r {ec2_output_path}')
 get_ipython().system('mkdir -p {ec2_output_path}')
 
 
-# In[4]:
+# In[3]:
 
 filename_zip = "gadm36_gpkg.zip" 
 filename_gpkg = "gadm36.gpkg"
@@ -45,47 +45,52 @@ file_path_zip = "%s/%s" %(ec2_input_path, filename_zip)
 file_path_gpkg = "%s/%s" %(ec2_input_path, filename_gpkg)
 
 
-# In[5]:
+# In[4]:
 
 get_ipython().system('wget {url} -P {ec2_input_path}')
 
 
-# In[6]:
+# In[5]:
 
 get_ipython().system('unzip {file_path_zip} -d {ec2_input_path}')
 
 
-# In[7]:
+# In[6]:
 
 ec2_output_file_path = "{}/gadm36.csv".format(ec2_output_path)
 
 
-# In[14]:
+# In[7]:
 
 command = "/opt/anaconda3/envs/python35/bin/ogr2ogr -f 'CSV' -lco GEOMETRY=AS_WKT {} {}/{}".format(ec2_output_file_path,ec2_input_path,filename_gpkg)
 
 
-# In[15]:
+# In[8]:
 
 command
 
 
-# In[16]:
+# In[9]:
 
 import subprocess
 
 
-# In[13]:
+# In[10]:
 
 response = subprocess.check_output(command,shell=True)
 
 
-# In[17]:
+# In[11]:
 
 get_ipython().system('gsutil -m cp -r {ec2_output_path} {GCS_OUTPUT_PATH}')
 
 
 # In[ ]:
 
+end = datetime.datetime.now()
+elapsed = end - start
+print(elapsed)
 
 
+# Previous Runs:  
+# 
